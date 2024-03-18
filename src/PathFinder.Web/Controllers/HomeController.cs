@@ -12,6 +12,7 @@ namespace PathFinder.Web.Controllers
         private readonly IRouteManager _routeManager;
         private readonly IMapGenerator _mapGenerator;
 
+        // Could remove routemanager and mapgenerator request injections and introduce a mediator here.
         public HomeController(IRouteManager routeManager, IMapGenerator mapGenerator)
         {
             _routeManager = routeManager;
@@ -20,6 +21,7 @@ namespace PathFinder.Web.Controllers
 
         public ActionResult Index()
         {
+            // ToDo: seed the data at the startup or first request and cache them for subsequent requests
             var map = _mapGenerator.SeedMap();
 
             var nodes = map;
